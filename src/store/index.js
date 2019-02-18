@@ -12,7 +12,7 @@ export default new Vuex.Store({
       state.reqLoading = data;
     }
   },
-  action: {
+  actions: {
     SetLoading({commit}, flag) {
       commit('setReqLoading', flag)
     }

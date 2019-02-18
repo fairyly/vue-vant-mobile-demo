@@ -1,12 +1,13 @@
 import axios from 'axios';
 import store from '@/store';
+import qs from 'qs';
 import { Toast } from 'vant';
 
 Vue.use(Toast);
 
 let local = window.location.origin;
 if (local.indexOf('localhost') != -1) {
-  local = 'http://www.gicdev.com';
+  local = 'http://www.test.com';
 }
 
 // 创建axios 实例
@@ -128,9 +129,14 @@ export const postJsonRequest = (url, params) => {
       params: params,
       headers: {'Content-Type': 'application/json;charset=UTF-8'}
     }).then(res => {
-        resolve(res)
+      if (res.data.errorCode !== 0) {
+        reject(res);
+        handleResponse(res.errorCode, res.message);
+      } else {
+        resolve(res);
+      }
     }).catch(error=>{
-        reject(error)
+      reject(error);
     })
   })
 }
