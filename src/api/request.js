@@ -64,8 +64,15 @@ service.interceptors.response.use(
  * @url:
  *
  */
-handleResponse(res){
+handleResponse(code, msg) {
+  switch (code) {
+    case 0:
 
+      break;
+
+    default:
+      break;
+  }
 }
 
 /*
@@ -85,11 +92,11 @@ export const getRequest = (url, params) => {
       url: `${local}${url}`,
       data: {},
       params: params,
-      headers: {'content-type': 'application/x-www-form-urlencoded'},// "token": token
+      headers: { 'content-type': 'application/x-www-form-urlencoded' }, // "token": token
     }).then(res => {
-        resolve(res)
-    }).catch(error=>{
-        reject(error)
+      resolve(res)
+    }).catch(error => {
+      reject(error)
     })
   })
 }
@@ -110,11 +117,11 @@ export const postRequest = (url, params) => {
       method: 'post',
       url: `${local}${url}`,
       data: qs.stringify(params),
-      headers: {'content-type': 'application/x-www-form-urlencoded'}
+      headers: { 'content-type': 'application/x-www-form-urlencoded' }
     }).then(res => {
-        resolve(res)
-    }).catch(error=>{
-        reject(error)
+      resolve(res)
+    }).catch(error => {
+      reject(error)
     })
   })
 }
@@ -127,7 +134,7 @@ export const postJsonRequest = (url, params) => {
       url: `${local}${url}`,
       data: "{}",
       params: params,
-      headers: {'Content-Type': 'application/json;charset=UTF-8'}
+      headers: { 'Content-Type': 'application/json;charset=UTF-8' }
     }).then(res => {
       if (res.data.errorCode !== 0) {
         reject(res);
@@ -135,7 +142,7 @@ export const postJsonRequest = (url, params) => {
       } else {
         resolve(res);
       }
-    }).catch(error=>{
+    }).catch(error => {
       reject(error);
     })
   })
@@ -155,12 +162,12 @@ export const postJson = (url, params) => {
       method: 'post',
       url: `${local}${url}`,
       data: params,
-      params: {requestProject:'web'},
-      headers: {'Content-Type': 'application/json;charset=UTF-8'}
+      params: { requestProject: 'web' },
+      headers: { 'Content-Type': 'application/json;charset=UTF-8' }
     }).then(res => {
-        resolve(res)
-    }).catch(error=>{
-        reject(error)
+      resolve(res)
+    }).catch(error => {
+      reject(error)
     })
   })
 }
@@ -179,9 +186,9 @@ export const postForm = (url, params) => {
       data: params,
       headers: {}
     }).then(res => {
-        resolve(res)
-    }).catch(error=>{
-        reject(error)
+      resolve(res)
+    }).catch(error => {
+      reject(error)
     })
   })
 }
